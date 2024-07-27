@@ -14,4 +14,4 @@ let onOff = toggle("on", "off");
 
 onOff() //on
 onOff() //off
-onOff() //on
+onOff() //on 
