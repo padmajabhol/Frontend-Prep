@@ -1,39 +1,45 @@
-function Queue() {
-  let items = []
-  let front = 0
-  let rear = -1
-  let count = 0
-
-  this.enqueu = (element) => {
-    items[++rear] = element;
-    count++
+class Queue {
+  constructor() {
+    this.items = {};
+    this.frontIndex = 0;
+    this.backIndex = 0;
   }
 
-  this.dequeue = () => {
-    if (this.isEmpty) {
+  enqueue(element) {
+    this.items[this.backIndex] = element;
+    this.backIndex++;
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
       return "Queue is empty";
     }
-
-    let current = front++;
-    let temp = items[current];
-    items[current] = null;
-    count--;
-    return temp;
+    const item = this.items[this.frontIndex];
+    delete this.items[this.frontIndex];
+    this.frontIndex++;
+    return item;
   }
 
-  this.front = () => {
-    return items[front];
+  front() {
+    if (this.isEmpty()) {
+      return "Queue is empty";
+    }
+    return this.items[this.frontIndex];
   }
 
-  this.rear = () => {
-    return items[rear];
+  isEmpty() {
+    return this.frontIndex === this.backIndex;
   }
 
-  this.size = () => {
-    return count;
+  size() {
+    return this.backIndex - this.frontIndex;
   }
 
-  this.isEmpty = () => {
-    return count === 0;
+  print() {
+    let result = '';
+    for (let i = this.frontIndex; i < this.backIndex; i++) {
+      result += this.items[i] + ' ';
+    }
+    console.log(result.trim());
   }
 }

@@ -1,46 +1,50 @@
 class Stack {
   constructor() {
-    this.items = []
-    this.count = 0
+    this.items = [];
+    this.count = 0;
   }
 
   push(element) {
-    this.items[this.count] = element
-    this.count += 1
-    return this.count - 1
+    this.items[this.count] = element;
+    this.count++;
   }
 
   pop() {
-    if (this.count == 0) return undefined
-    let deleteItem = this.items[this.count - 1]
-    this.count -= 1
-    return deleteItem
+    if (this.isEmpty()) {
+      return "Stack is empty";
+    }
+    this.count--;
+    const result = this.items[this.count];
+    delete this.items[this.count];
+    return result;
   }
 
   peek() {
+    if (this.isEmpty()) {
+      return "Stack is empty";
+    }
     return this.items[this.count - 1];
   }
 
   isEmpty() {
-    return this.count == 0
+    return this.count === 0;
   }
 
   size() {
-    return this.count
+    return this.count;
   }
 
   print() {
-    let str = ''
-    for (let i = 0; i < this.count; i++){
-      str += this.items[i] + ' '
+    let result = '';
+    for (let i = 0; i < this.count; i++) {
+      result = this.items[i] + ' ' + result;
     }
-    return str
+    console.log(result.trim());
   }
 
   clear() {
-    this.items = []
-    this.count = 0
-    return this.items
+    this.items = {};
+    this.count = 0;
   }
 }
 
